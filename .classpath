@@ -7,7 +7,6 @@
 	<classpathentry exported="true" kind="lib" path="libs/libgdx-nightly-20171021/gdx.jar" sourcepath="libs/libgdx-nightly-20171021/sources/gdx-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/libgdx-nightly-20171021/extensions/gdx-box2d/gdx-box2d.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/libgdx-nightly-20171021/gdx-backend-lwjgl.jar" sourcepath="libs/libgdx-nightly-20171021/gdx-backend-lwjgl.jar"/>
-	<classpathentry kind="lib" path="libs/libgdx-nightly-20171021/gdx-backend-android.jar"/>
 	<classpathentry kind="lib" path="libs/libgdx-nightly-20171021/gdx-backend-gwt.jar" sourcepath="libs/libgdx-nightly-20171021/gdx-backend-gwt.jar"/>
 	<classpathentry kind="lib" path="libs/libgdx-nightly-20171021/gdx-backend-headless.jar" sourcepath="libs/libgdx-nightly-20171021/gdx-backend-headless.jar"/>
 	<classpathentry kind="lib" path="libs/libgdx-nightly-20171021/gdx-backend-lwjgl-natives.jar"/>

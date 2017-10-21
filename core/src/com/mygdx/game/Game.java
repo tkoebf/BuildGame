@@ -34,6 +34,8 @@ public class Game extends ApplicationAdapter {
 		new TestBlock(new Vector2(500,-200));
 		new TestBlock(new Vector2(-500,200));
 		
+		Gdx.graphics.setTitle("Best Game Of The Year!!");
+		
 	}
 
 	@Override
@@ -43,7 +45,8 @@ public class Game extends ApplicationAdapter {
 		camera.position.set(new Vector3((float) Math.sin(System.currentTimeMillis()*.001)*10,1,0));
 		camera.zoom = (float) Math.sin(System.currentTimeMillis()*.001)+1.5f;
 		camera.update();
-		System.out.println(dt);
+		System.out.println(1/dt);
+		
 		//Gdx.gl.glClearColor(0, 0, 0, 0);
 		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();

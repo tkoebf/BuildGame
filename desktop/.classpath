@@ -12,7 +12,6 @@
 	<classpathentry exported="true" kind="lib" path="/BuildGame/libs/libgdx-nightly-20171021/gdx-backend-lwjgl3.jar" sourcepath="/BuildGame/libs/libgdx-nightly-20171021/gdx-backend-lwjgl3.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BuildGame/libs/libgdx-nightly-20171021/gdx-backend-robovm.jar" sourcepath="/BuildGame/libs/libgdx-nightly-20171021/gdx-backend-robovm.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BuildGame/libs/libgdx-nightly-20171021/gdx-natives.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BuildGame/libs/libgdx-nightly-20171021/gdx-backend-android.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BuildGame"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
