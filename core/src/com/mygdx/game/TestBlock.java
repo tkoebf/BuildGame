@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
@@ -19,6 +20,7 @@ public class TestBlock {
 	public static void Init(){
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
+		img.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 	}
 	
 	public TestBlock(Vector2 pos){

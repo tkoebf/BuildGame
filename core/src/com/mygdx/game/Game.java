@@ -33,15 +33,17 @@ public class Game extends ApplicationAdapter {
 		new TestBlock(new Vector2(500,200));
 		new TestBlock(new Vector2(500,-200));
 		new TestBlock(new Vector2(-500,200));
+		
 	}
 
 	@Override
 	public void render () {
 		float dt = Gdx.graphics.getDeltaTime();
 		camera.rotate(camera.direction,1);
-		camera.position.set(new Vector3((float) Math.sin(System.currentTimeMillis()*.001),1,0));
+		camera.position.set(new Vector3((float) Math.sin(System.currentTimeMillis()*.001)*10,1,0));
 		camera.zoom = (float) Math.sin(System.currentTimeMillis()*.001)+1.5f;
 		camera.update();
+		System.out.println(dt);
 		//Gdx.gl.glClearColor(0, 0, 0, 0);
 		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
