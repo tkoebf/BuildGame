@@ -28,8 +28,8 @@ public class MainGame extends ApplicationAdapter {
 		//camera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 		camera = new PerspectiveCamera(90,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 		camera.translate( new Vector3(0,0,20));
-		camera.far = 20;
-		//camera.rotate(camera.up,180);
+		camera.far = 100;
+		camera.rotate(Vector3.X,30);
 		atlas = new TextureAtlas("sprites.txt");
 		
 		new Building(0,0);
@@ -37,7 +37,7 @@ public class MainGame extends ApplicationAdapter {
 		Gdx.input.setInputProcessor(new InputAdapter(){
 			@Override
 			public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-				Vector3 mpos = camera.unproject(new Vector3(Gdx.input.getX(),Gdx.input.getY(),1f));
+				Vector3 mpos = camera.unproject(new Vector3(Gdx.input.getX(),Gdx.input.getY(),.98f));
 				System.out.println(mpos);
 				new Building(mpos.x,mpos.y);
 
