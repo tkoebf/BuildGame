@@ -1,6 +1,4 @@
 package com.mygdx.game;
-
-
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Camera;
@@ -15,29 +13,25 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
-public class TestBlock {
-	static SpriteBatch batch;
-	public static ArrayList<TestBlock> blocks = new ArrayList<TestBlock>();
+public class Block {
+
+	public static ArrayList<Block> blocks = new ArrayList<Block>();
 	
-	Vector2 pos;
+	public Vector2 pos;
 	Body body;
 	Sprite sprite;
 	
-	public static void Init(){
-		batch = new SpriteBatch();
-	}
-	
-	public TestBlock(Vector2 pos){
+	public Block(Vector2 pos){
 		this.pos = pos;
 		
+		//Body Thinks
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(1, 1);
 		
 		BodyDef def = new BodyDef();
 		 
-		def.type = BodyDef.BodyType.DynamicBody;
-		def.fixedRotation = false;
-		def.angularDamping = 0;
+		def.type = BodyDef.BodyType.StaticBody;
+		def.fixedRotation = true;
 		 
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = shape;
@@ -47,12 +41,12 @@ public class TestBlock {
 		body = Game.world.createBody(def);
 		body.createFixture(fixtureDef);
 		body.setTransform(pos.x, pos.y, 0);
-		
-		
-		 
+
 		Game.world.createBody(new BodyDef());
 		
-		sprite = Game.atlas.createSprite("coal");
+		///Sprite Things
+		
+		sprite = Game.atlas.createSprite("grass");
 		sprite.setCenter(800f, .5f);
 		sprite.setScale(1/(sprite.getWidth()/2f));
 		
@@ -60,17 +54,14 @@ public class TestBlock {
 		blocks.add(this);
 	}
 	
-	public void Update(Camera camera){
+	public void Update(){
 		pos = body.getWorldCenter();
-		batch.begin();
-		Matrix4 mat =  camera.combined.cpy();
-		//mat.scale(.1f, .1f, .1f);
-		batch.setProjectionMatrix(mat);
-		//batch.draw(img, pos.x,pos.y);
-		sprite.setPosition(pos.x-(sprite.getWidth()/2f), pos.y-(sprite.getHeight()/2f));
+		Game.batch.setProjectionMatrix(Game.camera.combined);
 
+		sprite.setPosition(pos.x-(sprite.getWidth()/2f), pos.y-(sprite.getHeight()/2f));
 		sprite.setRotation((float) (body.getAngle()*180/Math.PI));
-		sprite.draw(batch);
-		batch.end();
+		
+		//DRAW
+		sprite.draw(Game.batch);
 	}
 }

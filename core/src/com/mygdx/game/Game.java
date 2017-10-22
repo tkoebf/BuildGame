@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -29,7 +30,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.utils.Timer;
 
 public class Game extends ApplicationAdapter {
-	SpriteBatch batch;
+	public static SpriteBatch batch;
 	Texture img;
 	float x =0;
 	public static OrthographicCamera camera;// = new OrthographicCamera();
@@ -40,6 +41,8 @@ public class Game extends ApplicationAdapter {
 	Body body;
 	
 	Vector2 lepVel = Vector2.Zero;
+	
+	Vector2 cursorPos = Vector2.Zero;
 
 	@Override
 	public void create () {
@@ -104,11 +107,15 @@ public class Game extends ApplicationAdapter {
 		Gdx.input.setInputProcessor(new InputAdapter () {
 			   @Override
 			   public boolean touchDown (int x, int y, int pointer, int button) {
-			      // your touch down code here
 				   Vector3 mpos = new Vector3(x,y,0);
 				   Vector3 npos = camera.unproject(mpos);
 				   System.out.println(String.format("klick at %f,%f",npos.x,npos.y));
-				   new TestBlock(new Vector2(npos.x,npos.y));
+				   if(button == 0){
+
+					   new TestBlock(new Vector2(npos.x,npos.y));
+				   }else if(button == 1){
+					   new Block(cursorPos);
+				   }
 			      return true; // return true to indicate the event was handled
 			   }
 
@@ -162,7 +169,7 @@ public class Game extends ApplicationAdapter {
 	    }
 	    body.setLinearVelocity(mov);
 	    lepVel = lepVel.lerp(mov, .01f);
-		camera.combined.setToRotation(camera.direction,lepVel.x*10);
+	    
 		camera.position.set(new Vector3(body.getPosition().x,body.getPosition().y,0));
 		camera.zoom = lepVel.len()*.001f+.1f;
 		//camera.zoom = (float) Math.sin(System.currentTimeMillis()*.0001)+1.5f*.2f;
@@ -173,7 +180,17 @@ public class Game extends ApplicationAdapter {
 		batch.begin();
 		batch.setProjectionMatrix(camera.combined);
 		batch.draw(img, body.getPosition().x,body.getPosition().y);
-		atlas.createSprite("coal").draw(batch);
+		Sprite sp = atlas.createSprite("lightstone");
+		Vector3 mpos = new Vector3(Gdx.input.getX(),Gdx.input.getY(),0);
+		Vector3 npos = camera.unproject(mpos);
+		cursorPos = new Vector2(Math.round(npos.x/2)*2,Math.round(npos.y/2)*2);
+		sp.setPosition(cursorPos.x-sp.getWidth()/2,cursorPos.y-sp.getHeight()/2);
+		
+		sp.setScale(1/8f);
+		sp.draw(batch);
+		for(Block block : Block.blocks){
+			block.Update();
+		}
 		batch.end();
 		ShapeRenderer sr = new ShapeRenderer();
 		sr.setProjectionMatrix(camera.combined);
