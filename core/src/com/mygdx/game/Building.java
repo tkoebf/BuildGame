@@ -15,7 +15,7 @@ public class Building {
 	
 	public Building(Vector2 pos){
 		this.pos = pos;
-		
+		 
 		sprite = new Sprite[4];
 
 		sprite[0] = MainGame.atlas.createSprite("layeringpreset_0003");
