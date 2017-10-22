@@ -34,19 +34,23 @@ public class TestBlock {
 		this.pos = pos;
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(10, 10);
+		shape.setAsBox(1, 1);
 		
 		BodyDef def = new BodyDef();
 		 
 		def.type = BodyDef.BodyType.DynamicBody;
+		def.fixedRotation = false;
+		def.angularDamping = 0;
 		 
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = shape;
+		fixtureDef.friction = 1f;
+		fixtureDef.density = 1f;
 		 
 		body = Game.world.createBody(def);
 		body.createFixture(fixtureDef);
 		body.setTransform(pos.x, pos.y, 0);
-		 
+		
 		 
 		Game.world.createBody(new BodyDef());
 		
@@ -64,6 +68,7 @@ public class TestBlock {
 		batch.setProjectionMatrix(mat);
 		//batch.draw(img, pos.x,pos.y);
 		sprite.setPosition(pos.x, pos.y);
+		sprite.setRotation(body.getAngle());
 		sprite.draw(batch);
 		batch.end();
 	}
