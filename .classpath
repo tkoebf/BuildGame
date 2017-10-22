@@ -14,5 +14,7 @@
 	<classpathentry kind="lib" path="libs/libgdx-nightly-20171021/gdx-backend-robovm.jar" sourcepath="libs/libgdx-nightly-20171021/gdx-backend-robovm.jar"/>
 	<classpathentry kind="lib" path="libs/libgdx-nightly-20171021/gdx-natives.jar"/>
 	<classpathentry kind="lib" path="libs/libgdx-nightly-20171021/gdx-setup.jar"/>
+	<classpathentry kind="lib" path="libs/libgdx-nightly-20171021/extensions/gdx-box2d/gdx-box2d-gwt.jar"/>
+	<classpathentry kind="lib" path="libs/libgdx-nightly-20171021/extensions/gdx-box2d/gdx-box2d-natives.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
