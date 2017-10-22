@@ -6,6 +6,7 @@ import java.util.Map;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 
 public class Building {
 	public static Map<Vector2, Building> allbuildings = new HashMap<Vector2, Building>();
@@ -25,6 +26,7 @@ public class Building {
 		
 		for(Sprite sp: sprite){
 			sp.setScale(10/sp.getWidth(), 10/sp.getHeight());
+			sp.setPosition(pos.x-sp.getWidth()/2, pos.y-sp.getHeight()/2);
 		}
 		
 		allbuildings.put(pos, this);
@@ -33,13 +35,16 @@ public class Building {
 	public Building(float x,float y){
 		this(new Vector2(x,y));
 	}
+	public Building(Vector3 pos){
+		this(new Vector2(pos.x,pos.y));
+	}
 	
 	public void draw(){
 		Matrix4 mat =  MainGame.batch.getProjectionMatrix();
 		Matrix4 premat =  mat.cpy();
 		
 		for(int i = 0;i<sprite.length;i++){
-			mat.translate(0, 0, .3f);
+			mat.translate(0, 0, 1f);
 			MainGame.batch.setProjectionMatrix(mat);
 			sprite[i].draw(MainGame.batch);
 		}

@@ -26,6 +26,7 @@ public class MainGame extends ApplicationAdapter {
 		//camera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 		camera = new PerspectiveCamera(90,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 		camera.translate( new Vector3(0,0,20));
+		camera.far = 20;
 		//camera.rotate(camera.up,180);
 		atlas = new TextureAtlas("sprites.txt");
 		
@@ -53,6 +54,14 @@ public class MainGame extends ApplicationAdapter {
 		}
 		if(Gdx.input.isKeyPressed(Keys.D)){
 			mov.x += 1f;
+		}
+		
+		Vector3 mpos = camera.unproject(new Vector3(Gdx.input.getX(),Gdx.input.getY(),1f));
+		
+		
+		if(Gdx.input.isButtonPressed(0)){
+			System.out.println(mpos);
+			new Building(mpos.x,mpos.y);
 		}
 		
 		camera.translate(mov);
