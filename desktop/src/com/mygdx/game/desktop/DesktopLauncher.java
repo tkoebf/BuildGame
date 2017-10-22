@@ -7,6 +7,7 @@ import com.mygdx.game.MainGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.title = "Best Game ever!";
 		new LwjglApplication(new MainGame(), config);
 	}
 }
