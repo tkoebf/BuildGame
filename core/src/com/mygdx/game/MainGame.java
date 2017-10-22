@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
@@ -21,6 +22,7 @@ public class MainGame extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
 		//camera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
@@ -31,6 +33,18 @@ public class MainGame extends ApplicationAdapter {
 		atlas = new TextureAtlas("sprites.txt");
 		
 		new Building(0,0);
+		
+		Gdx.input.setInputProcessor(new InputAdapter(){
+			@Override
+			public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+				Vector3 mpos = camera.unproject(new Vector3(Gdx.input.getX(),Gdx.input.getY(),1f));
+				System.out.println(mpos);
+				new Building(mpos.x,mpos.y);
+
+				return true;
+			}
+		});
+		
 	}
 	
 	public void resize(int width, int height) {
@@ -58,11 +72,7 @@ public class MainGame extends ApplicationAdapter {
 		
 		Vector3 mpos = camera.unproject(new Vector3(Gdx.input.getX(),Gdx.input.getY(),1f));
 		
-		
-		if(Gdx.input.isButtonPressed(0)){
-			System.out.println(mpos);
-			new Building(mpos.x,mpos.y);
-		}
+	
 		
 		camera.translate(mov);
 		//camera.rotate(camera.direction,Gdx.input.getDeltaY());

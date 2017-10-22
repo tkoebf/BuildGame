@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer.Random;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -24,9 +25,12 @@ public class Building {
 		sprite[2] = MainGame.atlas.createSprite("layeringpreset_0001");
 		sprite[3] = MainGame.atlas.createSprite("layeringpreset_0000");
 		
+		float rot = (float) Math.floor(new java.util.Random().nextFloat()*4)*90;
+		
 		for(Sprite sp: sprite){
 			sp.setScale(10/sp.getWidth(), 10/sp.getHeight());
 			sp.setPosition(pos.x-sp.getWidth()/2, pos.y-sp.getHeight()/2);
+			sp.setRotation(rot);
 		}
 		
 		allbuildings.put(pos, this);
